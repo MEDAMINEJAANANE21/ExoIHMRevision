@@ -13,7 +13,7 @@ export class Exercice1Component {
 
   // TODO : Méthode pour incrémenter le compteur
   protected incrementationSignal(): void {
-    this.compteur.set(this.compteur() + 1);
+    this.compteur.update((s:number) => s + 1 );
   }
   
   //TODO : Creation d'un signal derive du signal "compteur" et qui l'incremente sans changer la valeur du signal "compteur"
@@ -22,7 +22,7 @@ export class Exercice1Component {
 
   // TODO : Méthode pour décrémenter le compteur
   protected decrementationSignal(): void {
-    this.compteur.set(this.compteur() - 1);
+    this.compteur.update((s:number) => s - 1);
   }
 
   //TODO : Creation d'un signal derive du signal "compteur" et qui decremente sans changer la valeur du signal "compteur"

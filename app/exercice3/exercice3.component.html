@@ -1,8 +1,8 @@
 <!-- TODO : div avec la classe "zone-clic" qui écoute l'événement (click)
             et appelle setCoordonnes($event) -->
-<div class="zone-clic">
+<div class="zone-clic" (click)="setCoordonnes($event)">
   Clique ici !
 </div>
 
 <!-- TODO : Affiche "Position du clic : X = ..., Y = ..." avec les signaux x() et y() -->
-<p>Position du clic : X = ?, Y = ?</p>
+<p>Position du clic : X = {{signalX()}}, Y = {{signalY()}}</p>

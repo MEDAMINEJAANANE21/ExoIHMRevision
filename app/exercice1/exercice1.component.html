@@ -1,8 +1,9 @@
 <!-- TODO : Affiche la valeur du compteur avec la notation moustache {{ }} -->
-
+La valeur du compteur sous une format normal: {{compteur()}} <br>
+La valeur du compteur sous une format json : {{compteur()|json}} <br>
 
 <!-- TODO : Bouton "+" qui appelle la méthode d'incrémentation -->
-<button>+</button>
+<button (click)="incrementationSignal()">+</button>
 
 <!-- TODO : Bouton "-" qui appelle la méthode de décrémentation -->
-<button>-</button>
+<button (click)="decrementationSignal()">-</button>

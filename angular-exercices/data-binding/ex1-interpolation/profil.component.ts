@@ -22,13 +22,15 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <!-- TODO 1 : Affiche le message d'accueil via interpolation -->
-
+    <!--{{messageAccueil()}} => il n'a pas de parentheses qunad je veux retourner le resultat d'un getters  -->
+    {{messageAccueil}}
     <!-- TODO 2 : Affiche l'âge -->
+     {{age}}
 
     <!-- TODO 3 : Affiche le rôle -->
-
+    {{role}}
     <!-- TODO 4 : Affiche le nom complet en concaténant prenom + ' ' + nom directement dans le template -->
-
+    {{prenom + ' ' + nom}}
   `
 })
 export class ProfilComponent {
@@ -39,6 +41,6 @@ export class ProfilComponent {
 
   // TODO 5 : Retourne la chaîne "Bonjour, Alice Dupont !"
   get messageAccueil(): string {
-    return '';
+    return 'Bonjour, Alice Dupont !';
   }
 }

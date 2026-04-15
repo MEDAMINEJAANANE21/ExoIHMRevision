@@ -56,15 +56,27 @@ export class ConnexionComponent {
     //   b. Logue dans la console
     //   c. Ajoute dans historique avec l'heure (new Date().toLocaleTimeString())
     // });
+    effect(() => {
+      const user = this.utilisateur();
+      const time = new Date().toLocaleTimeString();
+
+      console.log(user);
+
+      const message = user
+        ? `${time} - Connexion : ${user}`
+        : `${time} - Deconnexion`;
+
+      this.historique.push(message);
+    });
   }
 
   // TODO 1 : Set utilisateur à 'Alice'
   connecter(): void {
-
+    this.utilisateur.set('Alice');
   }
 
   // TODO 2 : Set utilisateur à null
   deconnecter(): void {
-
+    this.utilisateur.set(null);
   }
 }

@@ -19,13 +19,13 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <!-- TODO 1 : Lie [src] et [alt] à imageUrl et imageAlt -->
-    <img />
+    <img [src] = "imageUrl" [alt]="imageAlt" />
 
     <!-- TODO 2 : Lie [disabled] à !estConnecte -->
-    <button>Accéder au profil</button>
+    <button [disabled]= "estConnecte">Accéder au profil</button>
 
     <!-- TODO 3 : Lie [class.actif] pour appliquer le style si statut === 'Actif' -->
-    <div>Statut : {{ statut }}</div>
+    <div [class.actif]="statut === 'Actif'" >Statut : {{ statut }}</div>
   `,
   styles: [`
     .actif { color: green; font-weight: bold; }

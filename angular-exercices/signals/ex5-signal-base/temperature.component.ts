@@ -28,30 +28,37 @@ import { Component, signal } from '@angular/core';
   standalone: true,
   template: `
     <!-- TODO 2 : Affiche la valeur du signal temperature -->
-    <h2>Température : ... °C</h2>
+    <h2>Température : {{temperature()}}°C</h2>
 
     <!-- TODO 3 : Lie les boutons aux méthodes -->
-    <button>− 1°C</button>
-    <button>+ 1°C</button>
+    <button (click) = "baisser()">− 1°C</button>
+    <button (click) = "augmenter()">+ 1°C</button>
 
     <!-- TODO 6 : Affiche une alerte si temp > 35 -->
+    @if(temperature()>35){
+      <p>⚠️ Trop chaud !</p>
+    }
 
     <!-- TODO 7 : Affiche une alerte si temp < 0 -->
-
+    @if(temperature()<0){
+      <p>🥶 Trop froid !</p>
+    }
   `
 })
 export class TemperatureComponent {
 
   // TODO 1 : Déclare le signal temperature (valeur initiale : 20)
   // temperature = signal(???);
+  protected readonly temperature = signal<number>(20);
 
   // TODO 4 : Incrémente temperature de 1 avec .update()
-  augmenter(): void {
-
+  protected augmenter(): void {
+    this.temperature.update((temp:number) => temp + 1);
   }
 
   // TODO 5 : Décrémente temperature de 1 avec .update()
-  baisser(): void {
+  protected baisser(): void {
+    this.temperature.update((temp:number) => temp - 1);
 
   }
 }

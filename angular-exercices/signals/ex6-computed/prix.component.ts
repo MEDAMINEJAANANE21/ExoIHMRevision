@@ -35,12 +35,16 @@ import { Component, signal, computed } from '@angular/core';
     <label>
       Prix HT (€) :
       <!-- TODO 3 : Lie l'input au signal prixHT (voir astuce) -->
-      <input type="number" />
+      <input
+        type="number"
+        [value]="prixHT()"
+        (input)="prixHT.set(+$any($event.target).value)"
+      />
     </label>
 
     <!-- TODO 4 : Affiche montantTVA() et prixTTC() -->
-    <p>Montant TVA (20%) : ... €</p>
-    <p><strong>Prix TTC : ... €</strong></p>
+    <p>Montant TVA (20%) : {{montantTVA()}} €</p>
+    <p><strong>Prix TTC : {{prixTTC()}} €</strong></p>
   `
 })
 export class PrixComponent {
@@ -49,7 +53,9 @@ export class PrixComponent {
 
   // TODO 1 : Déclare montantTVA = computed(() => ...)
   // montantTVA = computed(() => ???);
+  protected readonly montantTVA = computed<number>(() => this.prixHT() * this.tauxTVA());
 
   // TODO 2 : Déclare prixTTC = computed(() => ...)
   // prixTTC = computed(() => ???);
+  protected readonly prixTTC = computed<number>(() => this.prixHT() + this.montantTVA());
 }

@@ -22,12 +22,15 @@ import { Component } from '@angular/core';
     <h2>Compteur : {{ compteur }}</h2>
 
     <!-- TODO 1 : Ajoute (click) sur chaque bouton -->
-    <button>−</button>
-    <button>Reset</button>
-    <button>+</button>
+    <button (click)="decrementer()">−</button>
+    <button (click)="reset()">Reset</button>
+    <button (click)="incrementer()">+</button>
 
-    <!-- TODO 2 : Affiche "⚠️ Maximum atteint !" si compteur > MAX -->
-
+    @if (compteur > MAX) {
+      <p>⚠️ Maximum atteint !</p>
+    }@else{
+      {{compteur}}
+    }
   `
 })
 export class CompteurComponent {
@@ -36,16 +39,16 @@ export class CompteurComponent {
 
   // TODO 3 : Incrémente compteur de 1
   incrementer(): void {
-
+    this.compteur = this.compteur + 1;
   }
 
   // TODO 4 : Décrémente compteur de 1 (min : 0)
   decrementer(): void {
-
+    this.compteur = this.compteur <= 0 ? 0 : this.compteur - 1;
   }
 
   // TODO 5 : Remet compteur à 0
   reset(): void {
-
+   this.compteur = 0;
   }
 }

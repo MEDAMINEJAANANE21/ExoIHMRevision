@@ -25,16 +25,16 @@ import { FormsModule } from '@angular/forms';
     <h2>Formulaire</h2>
 
     <!-- TODO 1 : Ajoute [(ngModel)]="nom" -->
-    <input type="text" placeholder="Votre nom" />
+    <input type="text" placeholder="Votre nom" [(ngModel)]="nom" />
 
     <!-- TODO 2 : Ajoute [(ngModel)]="email" -->
-    <input type="email" placeholder="Votre email" />
+    <input type="email" placeholder="Votre email" [(ngModel)]="email"/>
 
     <!-- TODO 3 : Affiche nom et email en temps réel -->
-    <p>Aperçu : ...</p>
+    <p>Aperçu : {{nom + "" +email}}</p>
 
     <!-- TODO 4 : Lie le bouton à effacer() -->
-    <button>Effacer</button>
+    <button (click)="effacer()">Effacer</button>
   `
 })
 export class FormulaireSimpleComponent {
@@ -43,6 +43,7 @@ export class FormulaireSimpleComponent {
 
   // TODO 5 : Remet nom et email à ''
   effacer(): void {
-
+    this.nom   = '';
+    this.email = '';
   }
 }

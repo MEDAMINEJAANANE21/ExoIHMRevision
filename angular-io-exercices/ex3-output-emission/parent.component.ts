@@ -38,17 +38,26 @@ import { BoutonCustomComponent } from './bouton-custom.component';
     <h2>Exercice 3 — output() et émission d'événements</h2>
 
     <!-- TODO 1 : Bouton "Valider" qui écoute (clique) -->
-
+    <app-bouton-custom
+      [libelle]="'Valider'"
+      (clique)="surClic($event)">
+    </app-bouton-custom>
 
     <!-- TODO 2 : Bouton "Supprimer" variante danger qui écoute (clique) -->
-
+    <app-bouton-custom
+      [libelle]="'Supprimer'"
+      [variante]="'danger'"
+      (clique)="surClic($event)">
+    </app-bouton-custom>
 
     <!-- TODO 3 : Affiche derniereAction() -->
-    <p>Dernière action : ...</p>
+    <p>Dernière action : {{derniereAction()}}</p>
 
     <!-- TODO 4 : Affiche la liste historique[] -->
     <ul>
-      <!-- @for ... -->
+      @for (his of historique; track his) {
+        <li>{{ his }}</li>
+      }
     </ul>
   `
 })
@@ -58,6 +67,7 @@ export class ParentEx3Component {
 
   // TODO 5 : Met à jour derniereAction et ajoute dans historique
   surClic(libelle: string): void {
-
+    this.derniereAction.set(libelle);
+    this.historique.push(this.derniereAction());
   }
 }

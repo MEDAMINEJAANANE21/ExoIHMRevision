@@ -42,13 +42,17 @@ import { EnfantEx1Component } from './enfant.component';
     </p>
 
     <!-- TODO 1 : Instancie 3 fois <app-enfant-ex1> avec [message] et [couleur] différents -->
-
+    <app-enfant-ex1 [message]="'Bonjour depuis le parent'" [couleur]="'crimson'"></app-enfant-ex1>
+    <app-enfant-ex1 [message]="'Deuxieme message'" [couleur]="'royalblue'"></app-enfant-ex1>
+    <app-enfant-ex1 [message]="'Troisieme message'" [couleur]="'seagreen'"></app-enfant-ex1>
 
     <!-- TODO 2 : Instancie 1 fois sans aucun attribut (valeurs par défaut) -->
+    <app-enfant-ex1></app-enfant-ex1>
 
 
     <!-- TODO 3 : Bouton qui modifie texteActuel + enfant lié à texteActuel() -->
     <button (click)="changerTexte()">Changer le message</button>
+    <app-enfant-ex1 [message]="texteActuel()" [couleur]="'darkorange'"></app-enfant-ex1>
 
   `
 })
@@ -66,6 +70,7 @@ export class ParentEx1Component {
   // TODO : Complète changerTexte() pour cycler dans le tableau messages[]
   // Utilise index.update() et texteActuel.set()
   changerTexte(): void {
-
+    this.index.update((i: number) => (i + 1) % this.messages.length);
+    this.texteActuel.set(this.messages[this.index()]);
   }
 }

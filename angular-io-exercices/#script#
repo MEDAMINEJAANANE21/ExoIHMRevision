@@ -1,0 +1,2 @@
+ nl -ba /home/ecloud/IHM/ExoIHMRevision/angular-io-exercices/ex3-output-emission/bouton-custom.component.ts | sed -n '1,240p'
+ nl -ba /home/ecloud/IHM/ExoIHMRevision/angular-io-exercices/ex3-output-emission/parent.component.ts | sed -n '1,260p'

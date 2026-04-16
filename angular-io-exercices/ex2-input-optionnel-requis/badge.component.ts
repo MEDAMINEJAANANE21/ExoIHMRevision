@@ -36,7 +36,11 @@ import { Component, input } from '@angular/core';
   template: `
     <!-- TODO 5 : Affiche le badge avec les styles dynamiques -->
     <!-- Utilise [style.background], [style.color], [style.font-size] -->
-    <span>
+    <span
+      [style.background]="couleurFond()"
+      [style.color]="couleurTexte()"
+      [style.font-size]="fontSize"
+    >
       {{ label() }}
     </span>
   `,
@@ -53,22 +57,26 @@ import { Component, input } from '@angular/core';
 export class BadgeComponent {
   // TODO 1 : label requis (input.required)
   // label = ???
+  protected readonly label = input.required<string>();
 
   // TODO 2 : couleurFond optionnel (défaut : '#3f51b5')
   // couleurFond = ???
+   protected readonly couleurFond = input<string>('#3f51b5');
 
   // TODO 3 : couleurTexte optionnel (défaut : 'white')
   // couleurTexte = ???
+  protected readonly couleurTexte  = input<string>('white');
 
   // TODO 4 : taille optionnel (défaut : 'moyen')
   // taille = ???
+  protected readonly taille = input<'petit' | 'moyen' | 'grand'>('moyen');
 
   // TODO 5 (aide) : pour la font-size, crée un computed() ou utilise une méthode
-  // get fontSize(): string {
-  //   switch(this.taille()) {
-  //     case 'petit': return '11px';
-  //     case 'grand': return '18px';
-  //     default:      return '14px';
-  //   }
-  // }
+   get fontSize(): string {
+     switch(this.taille()) {
+       case 'petit': return '11px';
+       case 'grand': return '18px';
+       default:      return '14px';
+    }
+   }
 }

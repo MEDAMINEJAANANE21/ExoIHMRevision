@@ -37,14 +37,19 @@ import { Component, input } from '@angular/core';
       <small style="color: gray">[ Composant Enfant ]</small>
 
       <!-- TODO 3 : Affiche message() avec [style.color]="couleur()" -->
-      <p>...</p>
+             <p [style.color]="couleur()">{{ message() }}</p>
     </div>
   `
 })
 export class EnfantEx1Component {
   // TODO 1 : Déclare message = input<string>('(aucun message)')
   // message = ???
+  protected readonly message = input<string>('(aucun message)');
 
   // TODO 2 : Déclare couleur = input<string>('black')
   // couleur = ???
+  protected readonly couleur = input<string>('black');
+
+  // c'est composant enfant qui comporte deux signal input qui sont intialiser par defaut s'il n'y a pas de 
+  // valeur emise par le composant parent 
 }

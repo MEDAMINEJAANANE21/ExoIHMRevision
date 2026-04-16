@@ -41,47 +41,49 @@ import { Component, input, output } from '@angular/core';
     <div style="border: 2px solid #3f51b5; padding: 12px; border-radius: 8px; display: inline-block;">
       <small style="color: gray">[ CompteurEnfant ]</small>
 
-      <!-- TODO 7 : Boutons et affichage de valeur() -->
-      <!-- [disabled] sur le "+" si valeur() >= max() -->
-      <!-- [disabled] sur le "−" si valeur() <= min() -->
-      <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
-        <button>−</button>
-        <strong>...</strong>
-        <button>+</button>
-        <button>Reset</button>
-      </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+            <button (click)="demanderDec()" [disabled]="valeur() <= min()">−</button>
+            <strong>{{ valeur() }}</strong>
+            <button (click)="demanderInc()" [disabled]="valeur() >= max()">+</button>
+            <button (click)="demanderReset()">Reset</button>
+          </div>
+        
     </div>
   `
 })
 export class CompteurEnfantComponent {
   // TODO 1 : valeur = input.required<number>()
   // valeur = ???
-
+  protected readonly valeur = input.required<number>();
   // TODO 2 : min = input optionnel (défaut: 0)
   // min = ???
+  protected readonly min = input<number>(0);
 
   // TODO 3 : max = input optionnel (défaut: 10)
   // max = ???
-
+    protected readonly max = input<number>(10);
   // TODO 4 : output incrementer (void)
   // incrementer = ???
+    protected readonly incrementer = output<void>();
 
   // TODO 5 : output decrementer (void)
   // decrementer = ???
-
+  protected readonly decrementer = output<void>();
   // TODO 6 : output reset (void)
   // reset = ???
+  protected readonly reset = output<void>();
 
   // TODO 8 : Méthodes qui émettent via les outputs
   demanderInc(): void {
-
+    this.incrementer.emit();
   }
 
   demanderDec(): void {
+    this.decrementer.emit();
 
   }
 
   demanderReset(): void {
-
+    this.reset.emit();
   }
 }

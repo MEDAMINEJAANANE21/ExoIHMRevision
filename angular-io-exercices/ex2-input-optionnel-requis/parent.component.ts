@@ -33,16 +33,16 @@ import { BadgeComponent } from './badge.component';
     <h2>Exercice 2 — input() optionnel vs input.required()</h2>
 
     <!-- TODO 1 : Badge avec seulement [label] -->
-
+    <app-badge [label]="'Badge 1'" />
 
     <!-- TODO 2 : Badge avec [label] + [couleurFond] personnalisée -->
-
+    <app-badge [label]="'Badge 2'" [couleurFond]="'#ff5722'" />
 
     <!-- TODO 3 : Badge avec [label] + [taille]="'grand'" -->
-
+    <app-badge [label]="'Badge 3'" [taille]="'grand'" />
 
     <!-- TODO 4 : Badge SANS [label] → observe l'erreur, puis corrige -->
-
+    
   `
 })
 export class ParentEx2Component {}

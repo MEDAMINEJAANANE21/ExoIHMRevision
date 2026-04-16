@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal,computed } from '@angular/core';
 import { CompteurEnfantComponent } from './compteur-enfant.component';
 
 /*
@@ -38,15 +38,27 @@ import { CompteurEnfantComponent } from './compteur-enfant.component';
     <h2>Exercice 4 — input + output : composant pur</h2>
 
     <h3>Compteur A (max: 20)</h3>
-    <!-- TODO 1 : Instancie app-compteur-enfant pour A -->
-
+    <app-compteur-enfant
+        [valeur]="compteurA()"
+        [max]="20"
+        (incrementer)="inc('A')"
+        (decrementer)="dec('A')"
+        (reset)="raz('A')">
+    </app-compteur-enfant>
 
     <h3>Compteur B (min: -5, max: 5)</h3>
     <!-- TODO 2 : Instancie app-compteur-enfant pour B -->
-
+    <app-compteur-enfant
+        [valeur]="compteurB()"
+        [max]="5"
+        [min]="-5"
+        (incrementer)="inc('B')"
+        (decrementer)="dec('B')"
+        (reset)="raz('B')">
+    </app-compteur-enfant>
 
     <!-- TODO 3 : Affiche total() -->
-    <p><strong>Somme A + B = ...</strong></p>
+    <p><strong>Somme A + B = {{total()}}</strong></p>
   `
 })
 export class ParentEx4Component {
@@ -55,17 +67,18 @@ export class ParentEx4Component {
 
   // TODO 3 : Déclare total = computed(() => compteurA() + compteurB())
   // total = ???
+  protected readonly total = computed<number>(() => this.compteurA() + this.compteurB());
 
   // TODO 4 : Modifie compteurA ou compteurB selon id
   inc(id: 'A' | 'B'): void {
-
+    id == 'A' ? this.compteurA.update((p:number) => p+1) : this.compteurB.update((p:number) => p+1);
   }
 
   dec(id: 'A' | 'B'): void {
-
+      id == 'A' ? this.compteurA.update((p:number) => p - 1) : this.compteurB.update((p:number) => p - 1);
   }
 
   raz(id: 'A' | 'B'): void {
-
+      id == 'A' ? this.compteurA.set(0) : this.compteurB.set(0);
   }
 }

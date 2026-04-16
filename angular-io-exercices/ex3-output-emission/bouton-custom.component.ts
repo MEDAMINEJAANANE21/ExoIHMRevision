@@ -36,7 +36,7 @@ import { Component, input, output } from '@angular/core';
   standalone: true,
   template: `
     <!-- TODO 5 : Bouton avec (click), affichage libelle, et [class.danger] -->
-    <button>...</button>
+    <button (click)="onclick()" [class.danger]="variante()">{{libelle()}}</button>
   `,
   styles: [`
     button {
@@ -57,15 +57,19 @@ import { Component, input, output } from '@angular/core';
 export class BoutonCustomComponent {
   // TODO 1 : libelle = input.required<string>()
   // libelle = ???
+  protected readonly libelle = input.required<string>();
 
   // TODO 2 : variante = input optionnel 'primaire' | 'danger' (défaut: 'primaire')
   // variante = ???
+    protected readonly variante = input<'primaire' | 'danger'>('primaire');
 
   // TODO 3 : clique = output qui émet un string
   // clique = ???
+  protected readonly clique = output<string>(); 
+
 
   // TODO 4 : méthode onClick qui émet le libelle via this.clique.emit(...)
   onClick(): void {
-
+    this.clique.emit("siftouni le parent");
   }
 }
